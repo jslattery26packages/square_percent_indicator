@@ -3,7 +3,6 @@ library square_percent_indicater;
 import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'Matrix4.dart';
 
@@ -28,8 +27,7 @@ class SquarePercentIndicator extends StatelessWidget {
   final StartAngle startAngle;
 
   const SquarePercentIndicator(
-      {
-      this.progress = 0.0,
+      {this.progress = 0.0,
       this.reverse = false,
       this.borderRadius = 5,
       this.progressColor = Colors.blue,
@@ -37,7 +35,7 @@ class SquarePercentIndicator extends StatelessWidget {
       this.progressWidth = 5,
       this.shadowWidth = 5,
       this.child,
-      this.startAngle=StartAngle.topLeft,
+      this.startAngle = StartAngle.topLeft,
       this.width = 150,
       this.height = 150});
 
@@ -78,11 +76,11 @@ class RadialPainter extends CustomPainter {
 
   RadialPainter({
     required this.progress,
-    this.color=Colors.blue,
-    this.shadowColor=Colors.grey,
-    this.strokeWidth=4,
-    this.shadowWidth=1,
-    this.reverse=false,
+    this.color = Colors.blue,
+    this.shadowColor = Colors.grey,
+    this.strokeWidth = 4,
+    this.shadowWidth = 1,
+    this.reverse = false,
     required this.strokeCap,
     required this.paintingStyle,
     this.startAngle = StartAngle.topLeft,
@@ -166,7 +164,7 @@ class RadialPainter extends CustomPainter {
   }
 }
 
-enum StartAngle { topRight, topLeft, bottomRight, bottomLeft }
+enum StartAngle { topRight, topLeft, bottomRight, bottomLeft, topCenter }
 
 extension GetValue on StartAngle {
   double get value => getRotationAngle;
@@ -175,6 +173,8 @@ extension GetValue on StartAngle {
     switch (this) {
       case StartAngle.topLeft:
         return 0;
+      case StartAngle.topCenter:
+        return pi * 0.25;
       case StartAngle.topRight:
         return pi * 0.5;
       case StartAngle.bottomRight:
